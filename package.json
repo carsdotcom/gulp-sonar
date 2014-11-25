@@ -1,0 +1,38 @@
+{
+  "name": "gulp-sonar",
+  "description": "Sonar for gulp.",
+  "version": "1.0.0",
+  "homepage": "https://github.com/machellerogden/gulp-sonar",
+  "author": {
+    "name": "Mac Heller-Ogden",
+    "email": "mac@machellerogden.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com/machellerogden/gulp-sonar.git"
+  },
+  "bugs": {
+    "url": "https://github.com/machellerogden/gulp-sonar/issues"
+  },
+  "licenses": [
+    {
+      "type": "Apache 2.0",
+      "url": "https://github.com/machellerogden/gulp-sonar/blob/master/LICENSE.txt"
+    }
+  ],
+  "engines": {
+    "node": ">= 0.10"
+  },
+  "devDependencies": {
+    "gulp": "~3.8.7",
+    "shelljs": "^0.3.0"
+  },
+  "peerDependencies": {
+    "gulp": "~3.8.7"
+  },
+  "keywords": [
+    "gulpplugin",
+    "sonar",
+    "sonar-runner"
+  ]
+}
