@@ -1,7 +1,7 @@
 {
   "name": "gulp-sonar",
   "description": "Sonar runner for gulp.",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "homepage": "https://github.com/carsdotcom/gulp-sonar",
   "author": {
     "name": "Mac Heller-Ogden",
