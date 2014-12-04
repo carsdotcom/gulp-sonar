@@ -1,23 +1,23 @@
 {
   "name": "gulp-sonar",
-  "description": "Sonar for gulp.",
+  "description": "Sonar runner for gulp.",
   "version": "1.0.0",
-  "homepage": "https://github.com/machellerogden/gulp-sonar",
+  "homepage": "https://github.com/carsdotcom/gulp-sonar",
   "author": {
     "name": "Mac Heller-Ogden",
     "email": "mac@machellerogden.com"
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com/machellerogden/gulp-sonar.git"
+    "url": "git@github.com/carsdotcom/gulp-sonar.git"
   },
   "bugs": {
-    "url": "https://github.com/machellerogden/gulp-sonar/issues"
+    "url": "https://github.com/carsdotcom/gulp-sonar/issues"
   },
   "licenses": [
     {
       "type": "Apache 2.0",
-      "url": "https://github.com/machellerogden/gulp-sonar/blob/master/LICENSE.txt"
+      "url": "https://github.com/carsdotcom/gulp-sonar/blob/master/LICENSE.txt"
     }
   ],
   "engines": {
