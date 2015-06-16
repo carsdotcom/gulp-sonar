@@ -31,6 +31,9 @@ module.exports = function (options) {
         options.sonar.language = options.sonar.language || 'js';
         options.sonar.sourceEncoding = options.sonar.sourceEncoding || 'UTF-8';
         options.sonar.host = options.sonar.host || { url: 'http://localhost:9000' };
+        options_exec = options.sonar.exec;
+        // This property is not for the sonar runner, but for the nodejs exec method, so we remove it after copied it
+        delete options.sonar.exec;
 
         function objectToProps(obj, result, prefix, o, prop) {
             obj = (typeof obj === 'object') ? obj : {};
@@ -55,7 +58,7 @@ module.exports = function (options) {
             if (err) {
                 throw new PluginError('gulp-sonar', format('Error writing properties file: %d.', err));
             } else {
-                process = exec(SONAR_RUNNER_COMMAND, function () {});
+                process = exec(SONAR_RUNNER_COMMAND, options_exec, function () {});
                 process.stdout.on('data', function (c) {
                     gutil.log(c);
                 });
