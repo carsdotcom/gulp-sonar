@@ -8,15 +8,17 @@ var fs = require('fs'),
     format = require('util').format;
 
 module.exports = function (options) {
-    var SONAR_RUNNER_HOME,
-        JAR,
+    var SONAR_VERSION,
+        SONAR_RUNNER_HOME,
+        SONAR_RUNNER_JAR,
         SONAR_RUNNER_COMMAND,
         write,
         flush;
 
-    SONAR_RUNNER_HOME = path.join(__dirname, '/sonar-runner-2.3');
-    JAR = '/lib/sonar-runner-dist-2.3.jar';
-    SONAR_RUNNER_COMMAND = 'java -jar ' + path.join(SONAR_RUNNER_HOME, JAR) + ' -X -Drunner.home=' + SONAR_RUNNER_HOME;
+    SONAR_VERSION = "2.4";
+    SONAR_RUNNER_HOME = path.join(__dirname, format('/sonar-runner-%s', SONAR_VERSION));
+    SONAR_RUNNER_JAR = format('/lib/sonar-runner-dist-%s.jar', SONAR_VERSION);
+    SONAR_RUNNER_COMMAND = 'java -jar ' + path.join(SONAR_RUNNER_HOME, SONAR_RUNNER_JAR) + ' -X -Drunner.home=' + SONAR_RUNNER_HOME;
 
     write = function (file, enc, cb) {
         // do nothing with source ... not needed
