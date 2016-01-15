@@ -30,7 +30,7 @@ module.exports = function (options) {
             process;
 
         options = (typeof options === 'object') ? options : { sonar: {} };
-        options.sonar.language = options.sonar.language || 'js';
+        options.sonar.language = options.sonar.language;
         options.sonar.sourceEncoding = options.sonar.sourceEncoding || 'UTF-8';
         options.sonar.host = options.sonar.host || { url: 'http://localhost:9000' };
         options_exec = options.sonar.exec;
