@@ -27,7 +27,6 @@
     "gulp": "^3.9.0"
   },
   "peerDependencies": {
-    "gulp": "^3.9.0"
   },
   "keywords": [
     "gulpplugin",
