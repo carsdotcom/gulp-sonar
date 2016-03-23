@@ -18,7 +18,7 @@ module.exports = function (options) {
     SONAR_VERSION = "2.4";
     SONAR_RUNNER_HOME = path.join(__dirname, format('/sonar-runner-%s', SONAR_VERSION));
     SONAR_RUNNER_JAR = format('/lib/sonar-runner-dist-%s.jar', SONAR_VERSION);
-    SONAR_RUNNER_COMMAND = 'java -jar ' + path.join(SONAR_RUNNER_HOME, SONAR_RUNNER_JAR) + ' -X -Drunner.home=' + SONAR_RUNNER_HOME;
+    SONAR_RUNNER_COMMAND = 'java -jar "' + path.join(SONAR_RUNNER_HOME, SONAR_RUNNER_JAR) + '" -X -Drunner.home=' + SONAR_RUNNER_HOME;
 
     write = function (file, enc, cb) {
         // do nothing with source ... not needed
