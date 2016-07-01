@@ -4,8 +4,8 @@
 @REM   JAVA_HOME - location of a JDK home dir
 @REM
 @REM Optional ENV vars:
-@REM   SONAR_SCANNER_HOME - location of runner's installed home dir
-@REM   SONAR_SCANNER_OPTS - parameters passed to the Java VM when running Sonar
+@REM   SONAR_RUNNER_HOME - location of runner's installed home dir
+@REM   SONAR_RUNNER_OPTS - parameters passed to the Java VM when running Sonar
 
 @echo off
 
@@ -47,22 +47,22 @@ goto error
 :foundJavaExeFromJavaHome
 set JAVA_EXEC="%JAVA_HOME%\bin\java.exe"
 
-@REM *** SONAR SCANNER HOME VALIDATION ***
+@REM *** SONAR RUNNER HOME VALIDATION ***
 :OkJava
-if NOT "%SONAR_SCANNER_HOME%"=="" goto cleanSQScannerHome
-set SONAR_SCANNER_HOME=%~dp0..
+if NOT "%SONAR_RUNNER_HOME%"=="" goto cleanSonarRunnerHome
+set SONAR_RUNNER_HOME=%~dp0..
 goto run
 
-:cleanSQScannerHome
+:cleanSonarRunnerHome
 @REM If the property has a trailing backslash, remove it
-if "%SONAR_SCANNER_HOME:~-1%"=="\" set SONAR_SCANNER_HOME=%SONAR_SCANNER_HOME:~0,-1%
+if %SONAR_RUNNER_HOME:~-1%==\ set SONAR_RUNNER_HOME=%SONAR_RUNNER_HOME:~0,-1%
 
-@REM Check if the provided SONAR_SCANNER_HOME is a valid install dir
-IF EXIST "%SONAR_SCANNER_HOME%\lib\sonar-scanner-cli-2.6.jar" goto run
+@REM Check if the provided SONAR_RUNNER_HOME is a valid install dir
+IF EXIST "%SONAR_RUNNER_HOME%\lib\sonar-runner-dist-2.4.jar" goto run
 
 echo.
-echo ERROR: SONAR_SCANNER_HOME exists but does not point to a valid install
-echo        directory: %SONAR_SCANNER_HOME%
+echo ERROR: SONAR_RUNNER_HOME exists but does not point to a valid install
+echo        directory: %SONAR_RUNNER_HOME%
 echo.
 goto error
 
@@ -70,11 +70,11 @@ goto error
 
 @REM ==== START RUN ====
 :run
-echo %SONAR_SCANNER_HOME%
+echo %SONAR_RUNNER_HOME%
 
 set PROJECT_HOME=%CD%
 
-%JAVA_EXEC% -Djava.awt.headless=true %SONAR_SCANNER_OPTS% -cp "%SONAR_SCANNER_HOME%\lib\sonar-scanner-cli-2.6.jar" "-Dscanner.home=%SONAR_SCANNER_HOME%" "-Dproject.home=%PROJECT_HOME%" org.sonarsource.scanner.cli.Main %*
+%JAVA_EXEC% %SONAR_RUNNER_OPTS% -cp "%SONAR_RUNNER_HOME%\lib\sonar-runner-dist-2.4.jar" "-Drunner.home=%SONAR_RUNNER_HOME%" "-Dproject.home=%PROJECT_HOME%" org.sonar.runner.Main %*
 if ERRORLEVEL 1 goto error
 goto end
 
