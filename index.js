@@ -9,16 +9,17 @@ var fs = require('fs'),
 
 module.exports = function (options) {
     var SONAR_VERSION,
-        SONAR_RUNNER_HOME,
-        SONAR_RUNNER_JAR,
-        SONAR_RUNNER_COMMAND,
+        SONAR_SCANNER_HOME,
+        SONAR_SCANNER_JAR,
+        SONAR_SCANNER_COMMAND,
         write,
         flush;
 
-    SONAR_VERSION = "2.4";
-    SONAR_RUNNER_HOME = path.join(__dirname, format('/sonar-runner-%s', SONAR_VERSION));
-    SONAR_RUNNER_JAR = format('/lib/sonar-runner-dist-%s.jar', SONAR_VERSION);
-    SONAR_RUNNER_COMMAND = 'java -jar ' + path.join(SONAR_RUNNER_HOME, SONAR_RUNNER_JAR) + ' -X -Drunner.home=' + SONAR_RUNNER_HOME;
+    SONAR_VERSION = "2.8";
+    SONAR_SCANNER_HOME = path.join(__dirname, format('/sonar-scanner-%s', SONAR_VERSION));
+    SONAR_SCANNER_PROPERTIES = path.join(__dirname, format('/sonar-scanner-%s', SONAR_VERSION), 'conf', 'sonar-scanner.properties');
+    SONAR_SCANNER_JAR = format('/lib/sonar-scanner-cli-%s.jar', SONAR_VERSION);
+    SONAR_SCANNER_COMMAND = 'java -jar ' + path.join(SONAR_SCANNER_HOME, SONAR_SCANNER_JAR) + ' -X -Drunner.home=' + SONAR_SCANNER_HOME + ' -Dproject.settings=' + SONAR_SCANNER_PROPERTIES;
 
     write = function (file, enc, cb) {
         // do nothing with source ... not needed
@@ -56,11 +57,11 @@ module.exports = function (options) {
 
         props = objectToProps(options);
 
-        fs.writeFile(path.join(SONAR_RUNNER_HOME, '/conf/sonar-runner.properties'), props.join(os.EOL), function (err) {
+        fs.writeFile(path.join(SONAR_SCANNER_HOME, '/conf/sonar-scanner.properties'), props.join(os.EOL), function (err) {
             if (err) {
                 throw new PluginError('gulp-sonar', format('Error writing properties file: %d.', err));
             } else {
-                process = exec(SONAR_RUNNER_COMMAND, options_exec, function () {});
+                process = exec(SONAR_SCANNER_COMMAND, options_exec, function () {});
                 process.stdout.on('data', function (c) {
                     gutil.log(c);
                 });

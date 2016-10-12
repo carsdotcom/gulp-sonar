@@ -14,6 +14,8 @@ set ERROR_CODE=0
 @REM set local scope for the variables with windows NT shell
 @setlocal
 
+echo WARN: sonar-runner.bat script is deprecated. Please use sonar-scanner.bat instead.
+
 @REM ==== START VALIDATION ====
 @REM *** JAVA EXEC VALIDATION ***
 if not "%JAVA_HOME%" == "" goto foundJavaHome
@@ -51,14 +53,14 @@ set JAVA_EXEC="%JAVA_HOME%\bin\java.exe"
 :OkJava
 if NOT "%SONAR_RUNNER_HOME%"=="" goto cleanSonarRunnerHome
 set SONAR_RUNNER_HOME=%~dp0..
-goto run
+goto sonarRunnerOpts
 
 :cleanSonarRunnerHome
 @REM If the property has a trailing backslash, remove it
-if %SONAR_RUNNER_HOME:~-1%==\ set SONAR_RUNNER_HOME=%SONAR_RUNNER_HOME:~0,-1%
+if "%SONAR_RUNNER_HOME:~-1%"=="\" set SONAR_RUNNER_HOME=%SONAR_RUNNER_HOME:~0,-1%
 
 @REM Check if the provided SONAR_RUNNER_HOME is a valid install dir
-IF EXIST "%SONAR_RUNNER_HOME%\lib\sonar-runner-dist-2.4.jar" goto run
+IF EXIST "%SONAR_RUNNER_HOME%\lib\sonar-scanner-cli-2.8.jar" goto sonarRunnerOpts
 
 echo.
 echo ERROR: SONAR_RUNNER_HOME exists but does not point to a valid install
@@ -66,7 +68,14 @@ echo        directory: %SONAR_RUNNER_HOME%
 echo.
 goto error
 
-
+@REM ==== HANDLE DEPRECATED SONAR_RUNNER_OPTS ====
+:sonarRunnerOpts
+if "%SONAR_RUNNER_OPTS%" == "" (
+  goto run
+) else (
+  echo WARN: SONAR_RUNNER_OPTS is deprecated. Please use SONAR_SCANNER_OPTS instead.
+  if "%SONAR_SCANNER_OPTS%" == "" (set SONAR_SCANNER_OPTS=%SONAR_RUNNER_OPTS%)
+) 
 
 @REM ==== START RUN ====
 :run
@@ -74,7 +83,7 @@ echo %SONAR_RUNNER_HOME%
 
 set PROJECT_HOME=%CD%
 
-%JAVA_EXEC% %SONAR_RUNNER_OPTS% -cp "%SONAR_RUNNER_HOME%\lib\sonar-runner-dist-2.4.jar" "-Drunner.home=%SONAR_RUNNER_HOME%" "-Dproject.home=%PROJECT_HOME%" org.sonar.runner.Main %*
+%JAVA_EXEC% -Djava.awt.headless=true %SONAR_SCANNER_OPTS% -cp "%SONAR_RUNNER_HOME%\lib\sonar-scanner-cli-2.8.jar" "-Dscanner.home=%SONAR_RUNNER_HOME%" "-Dproject.home=%PROJECT_HOME%" org.sonarsource.scanner.cli.Main %*
 if ERRORLEVEL 1 goto error
 goto end
 
