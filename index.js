@@ -19,7 +19,7 @@ module.exports = function (options) {
     SONAR_SCANNER_HOME = path.join(__dirname, format('/sonar-scanner-%s', SONAR_VERSION));
     SONAR_SCANNER_PROPERTIES = path.join(__dirname, format('/sonar-scanner-%s', SONAR_VERSION), 'conf', 'sonar-scanner.properties');
     SONAR_SCANNER_JAR = format('/lib/sonar-scanner-cli-%s.jar', SONAR_VERSION);
-    SONAR_SCANNER_COMMAND = 'java -jar ' + path.join(SONAR_SCANNER_HOME, SONAR_SCANNER_JAR) + ' -X -Drunner.home=' + SONAR_SCANNER_HOME + ' -Dproject.settings=' + SONAR_SCANNER_PROPERTIES;
+    SONAR_SCANNER_COMMAND = 'java -jar "' + path.join(SONAR_SCANNER_HOME, SONAR_SCANNER_JAR) + '" -X -Drunner.home="' + SONAR_SCANNER_HOME + '" -Dproject.settings="' + SONAR_SCANNER_PROPERTIES + '"';
 
     write = function (file, enc, cb) {
         // do nothing with source ... not needed
