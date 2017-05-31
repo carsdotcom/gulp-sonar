@@ -69,7 +69,7 @@ module.exports = function (options) {
                     gutil.log(c);
                 });
                 process.on('exit', function (code) {
-                    if (code !== 0) {
+                    if (!!code && code !== 0) {
                         gutil.log(format('Return code: %d.', code));
                         throw new PluginError('gulp-sonar', format('Return code: %d.', code));
                     }
