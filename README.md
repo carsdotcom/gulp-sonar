@@ -11,6 +11,10 @@ npm install --save-dev gulp-sonar
 ## Usage Example
 
 ```js
+var gulp = require('gulp');
+var sonar = require('gulp-sonar');
+var util = require('gulp-util');
+
 gulp.task('sonar', function () {
     var options = {
         sonar: {
