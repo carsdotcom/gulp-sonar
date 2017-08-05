@@ -17,11 +17,8 @@ gulp.task('sonar', function () {
             host: {
                 url: 'http://localhost:9000'
             },
-            jdbc: {
-                url: 'jdbc:mysql://localhost:3306/sonar',
-                username: 'sonar',
-                password: 'sonar'
-            },
+            login: 'admin',
+            password: 'admin',
             projectKey: 'sonar:my-project:1.0.0',
             projectName: 'My Project',
             projectVersion: '1.0.0',
