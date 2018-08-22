@@ -1,8 +1,8 @@
 var fs = require('fs'),
     path = require('path'),
     through = require('through2'),
-    gutil = require('gulp-util'),
-    PluginError = gutil.PluginError,
+    gutil = require('fancy-log'),
+    PluginError = require('plugin-error'),
     exec = require('child_process').exec,
     os = require('os'),
     format = require('util').format;
