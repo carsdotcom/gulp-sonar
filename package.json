@@ -4,20 +4,20 @@
   "version": "3.0.2",
   "homepage": "https://github.com/carsdotcom/gulp-sonar",
   "author": {
-    "name": "Mac Heller-Ogden",
-    "email": "mac@machellerogden.com"
+    "name": "Felix Willnecker (Mac Heller-Ogden)",
+    "email": "felix.willnecker@web.de"
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com/carsdotcom/gulp-sonar.git"
+    "url": "git@github.com/Floix/gulp-sonar.git"
   },
   "bugs": {
-    "url": "https://github.com/carsdotcom/gulp-sonar/issues"
+    "url": "https://github.com/Floix/gulp-sonar/issues"
   },
   "licenses": [
     {
       "type": "Apache 2.0",
-      "url": "https://github.com/carsdotcom/gulp-sonar/blob/master/LICENSE.txt"
+      "url": "https://github.com/Floix/gulp-sonar/blob/master/LICENSE.txt"
     }
   ],
   "engines": {
