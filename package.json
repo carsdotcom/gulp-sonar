@@ -1,31 +1,24 @@
 {
   "name": "gulp-sonar",
   "description": "Sonar runner for gulp.",
-  "version": "3.0.1",
+  "version": "3.0.2",
   "homepage": "https://github.com/carsdotcom/gulp-sonar",
   "author": {
-    "name": "Mac Heller-Ogden",
-    "email": "mac@machellerogden.com"
+    "name": "Felix Willnecker (Mac Heller-Ogden)",
+    "email": "felix.willnecker@web.de"
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com/carsdotcom/gulp-sonar.git"
+    "url": "git@github.com/Floix/gulp-sonar.git"
   },
   "bugs": {
-    "url": "https://github.com/carsdotcom/gulp-sonar/issues"
+    "url": "https://github.com/Floix/gulp-sonar/issues"
   },
-  "licenses": [
-    {
-      "type": "Apache 2.0",
-      "url": "https://github.com/carsdotcom/gulp-sonar/blob/master/LICENSE.txt"
-    }
-  ],
+  "license": "Apache-2.0",
   "engines": {
     "node": ">= 0.10"
   },
-  "devDependencies": {
-    "gulp": "^3.9.0"
-  },
+  "devDependencies": {},
   "peerDependencies": {},
   "keywords": [
     "gulpplugin",
@@ -33,7 +26,8 @@
     "sonar-runner"
   ],
   "dependencies": {
-    "gulp-util": "3.0.1",
+    "fancy-log": "1.3.2",
+    "plugin-error": "1.0.1",
     "through2": "0.6.3",
     "properties": "1.2.1"
   }
