@@ -14,12 +14,7 @@
   "bugs": {
     "url": "https://github.com/Floix/gulp-sonar/issues"
   },
-  "licenses": [
-    {
-      "type": "Apache 2.0",
-      "url": "https://github.com/Floix/gulp-sonar/blob/master/LICENSE.txt"
-    }
-  ],
+  "license": "Apache-2.0",
   "engines": {
     "node": ">= 0.10"
   },

@@ -1,7 +1,7 @@
 var fs = require("fs"),
     path = require("path"),
     through = require("through2"),
-    gutil = require("fancy-log"),
+    log = require("fancy-log"),
     PluginError = require("plugin-error"),
     exec = require("child_process").exec,
     os = require("os"),
@@ -63,17 +63,17 @@ module.exports = function (options) {
             } else {
                 process = exec(SONAR_SCANNER_COMMAND, options_exec, function () {});
                 process.stdout.on("data", function (c) {
-                    gutil.log(c);
+                    log(c);
                 });
                 process.stderr.on("data", function (c) {
-                    gutil.log(c);
+                    log(c);
                 });
                 process.on("exit", function (code) {
                     if (code !== 0) {
-                        gutil.log(format("Return code: %d.", code));
+                        log(format("Return code: %d.", code));
                         throw new PluginError("gulp-sonar", format("Return code: %d.", code));
                     }
-                    gutil.log(format("Return code: %d.", code));
+                    log(format("Return code: %d.", code));
                     cb();
                 });
             }
